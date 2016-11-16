@@ -339,7 +339,9 @@ func keyTypeFromTag(tag string) string {
 }
 
 func sortKeySchemas(schemas []*dynamodb.KeySchemaElement) {
-	if *schemas[0].KeyType == dynamodb.KeyTypeRange {
-		schemas[0], schemas[1] = schemas[1], schemas[0]
+	if len(schemas) > 0 {
+		if *schemas[0].KeyType == dynamodb.KeyTypeRange {
+			schemas[0], schemas[1] = schemas[1], schemas[0]
+		}
 	}
 }
